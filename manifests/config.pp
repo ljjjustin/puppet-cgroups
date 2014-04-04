@@ -11,13 +11,16 @@
 #  class { 'cgroups::config': }
 #
 class cgroups::config {
-  file { $cgroups::cgconfig_conf:
-    ensure  => file,
+  concat { $::cgroups::cgconfig_conf:
     owner   => 'root',
     group   => 'root',
-    content => template("${module_name}/cgconfig.conf.erb"),
     require => Class['cgroups::install'],
     notify  => Class['cgroups::service'],
+  }
+  concat::fragment { '00-cgroup-mounts':
+    order   => '00',
+    target  => $::cgroups::cgconfig_conf,
+    content => template("${module_name}/cgconfig.conf.erb"),
   }
   file { $cgroups::cgred_conf:
     ensure  => file,
