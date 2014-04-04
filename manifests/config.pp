@@ -27,4 +27,12 @@ class cgroups::config {
     require => Class['cgroups::install'],
     notify  => Class['cgroups::service'],
   }
+  file { $cgroups::cgrules_conf:
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    content => template("${module_name}/cgrules.conf.erb"),
+    require => Class['cgroups::install'],
+    notify  => Class['cgroups::service'],
+  }
 }
