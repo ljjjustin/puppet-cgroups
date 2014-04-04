@@ -1,0 +1,14 @@
+# File is managed by puppet
+#
+# By default, mount all controllers to /cgroup/<controller>
+
+mount {
+       cpuset  = /cgroup/cpuset;
+       cpu     = /cgroup/cpu;
+       cpuacct = /cgroup/cpuacct;
+       memory  = /cgroup/memory;
+       devices = /cgroup/devices;
+       freezer = /cgroup/freezer;
+       net_cls = /cgroup/net_cls;
+       blkio   = /cgroup/blkio;
+}
