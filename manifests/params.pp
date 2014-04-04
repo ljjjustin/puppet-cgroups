@@ -19,7 +19,7 @@ class cgroups::params {
       $cgconfig_service_name = 'cgconfig'
       $cgconfig_conf         = '/etc/cgconfig.conf'
       $cgred_service_name    = 'cgred'
-      $cgred_conf            = '/etc/cgred.conf'
+      $cgred_conf            = '/etc/sysconfig/cgred.conf'
       $cgrules_conf          = '/etc/cgrules.conf'
     }
     debian: {
@@ -28,7 +28,7 @@ class cgroups::params {
       $cgconfig_service_name = 'cgconfig'
       $cgconfig_conf         = '/etc/cgconfig.conf'
       $cgred_service_name    = 'cgred'
-      $cgred_conf            = '/etc/cgred.conf'
+      $cgred_conf            = '/etc/default/cgred.conf'
       $cgrules_conf          = '/etc/cgrules.conf'
     }
     default: {
