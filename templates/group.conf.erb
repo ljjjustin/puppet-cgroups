@@ -1,19 +1,20 @@
 group <%= @name -%> {
-        <% if @permission %>
+<% if @permissions -%>
         perm {
                 task {
-                        uid = <%= @permission['task_user'] -%>;
-                        gid = <%= @permission['task_group'] -%>;
+                        uid = <%= @permissions['task_user'] -%>;
+                        gid = <%= @permissions['task_group'] -%>;
                 }
                 admin {
-                        uid = <%= @permission['admin_user'] -%>;
-                        gid = <%= @permission['admin_group'] -%>;
+                        uid = <%= @permissions['admin_user'] -%>;
+                        gid = <%= @permissions['admin_group'] -%>;
                 }
         }
-        <% end %>
-        <%= @controller %> {
-        <%  @parameters.each_pair do |key, value| -%>
+<% end -%>
+<% @controllers.each_pair do |controller, parameters| -%>
+        <%= controller %> {
+        <% parameters.each_pair do |key, value| -%>
         <%= key %> = <%= value %>;
-        <% end %>
-        }
+        <% end %>}
+<% end -%>
 }

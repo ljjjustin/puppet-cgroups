@@ -9,19 +9,18 @@
 # === Examples
 #
 #  cgroups::group { 'root':
-#    permission => {task_user => 'root', task_group => 'root', admin_user => 'root', admin_group => 'root'},
-#    controller => {cpuset => {'cpuset.cpus' => '0', 'cpuset.mems' => '0'}},
+#    permissions => {task_user => 'root', task_group => 'root', admin_user => 'root', admin_group => 'root'},
+#    controllers => {cpu => {'cpu.shares' => '1024'}, cpuset => {'cpuset.cpus' => '0', 'cpuset.mems' => '0'}},
 #  }
 #
 define cgroups::group (
-  $permission = false,
-  $controller = false,
-  $parameters = false,
+  $permissions = false,
+  $controllers = false,
 ) {
 
-  # check parameters
-  if ! $controller or ! $parameters {
-    fail("You MUST provide 'controller' and 'parameters' in order to define a group")
+  # check controllers
+  if ! $controllers {
+    fail("You MUST provide 'controllers' in order to define a group")
   }
 
   concat::fragment { "cgroups-group-${name}":
