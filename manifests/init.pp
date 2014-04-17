@@ -12,7 +12,5 @@
 #
 class cgroups (
 ) inherits cgroups::params {
-  class { 'cgroups::install': }
-  class { 'cgroups::config': }
-  class { 'cgroups::service': }
+  class { 'cgroups::install': } -> class { 'cgroups::config': } -> class { 'cgroups::service': }
 }

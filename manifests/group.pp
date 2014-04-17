@@ -27,6 +27,6 @@ define cgroups::group (
     target  => $::cgroups::cgconfig_conf,
     content => template("${module_name}/group.conf.erb"),
     require => Package[$::cgroups::package_name],
-    notify  => Service[$::cgroups::cgconfig_service_name],
+    notify  => [Service[$::cgroups::cgconfig_service_name], Service[$::cgroups::cgred_service_name]],
   }
 }

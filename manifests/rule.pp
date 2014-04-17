@@ -33,9 +33,8 @@ define cgroups::rule (
   }
   
   # modify cgroup rules
-  file_line { $real_user:
+  file_line { "$::cgroups::cgrules_conf $name":
     path    => $::cgroups::cgrules_conf,
-    match   => "$real_user ",
     line    => "$real_user $controllers $destination",
     require => Package[$::cgroups::package_name],
     notify  => Service[$::cgroups::cgred_service_name],
