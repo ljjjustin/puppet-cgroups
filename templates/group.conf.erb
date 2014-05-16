@@ -11,10 +11,10 @@ group <%= @name -%> {
                 }
         }
 <% end -%>
-<% @controllers.each_pair do |controller, parameters| -%>
+<% @controllers.keys.sort.each do |controller| -%>
         <%= controller %> {
-        <% parameters.each_pair do |key, value| -%>
-        <%= key %> = <%= value %>;
+        <% @controllers[controller].keys.sort.each do |key| -%>
+        <%= key %> = "<%= @controllers[controller][key] %>";
         <% end %>}
 <% end -%>
 }
